@@ -16,7 +16,7 @@ const SetupRequired = () => (
 
       <p className="text-sm text-muted-foreground">
         The required variables are listed in <code>.env.example</code>. Run the SQL migration in
-        <code> supabase/migrations/20260314133000_dormflow_mvp.sql</code> before signing in.
+        <code> supabase/migrations/20260316150000_dormflow_schema.sql</code> before signing in.
       </p>
     </div>
   </div>

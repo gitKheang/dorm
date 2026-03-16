@@ -104,7 +104,7 @@ const workflowSteps: Array<IconEntry & { step: string }> = [
   {
     step: "03",
     icon: CalendarRange,
-    title: "Run the weekly operation",
+    title: "Run the daily operation",
     description: "Assign rooms, publish meals, respect cutoffs, and keep tenant actions linked to the correct dorm.",
   },
   {

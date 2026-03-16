@@ -89,7 +89,6 @@ const SettingsPage = () => {
               className="w-full h-10 px-4 border border-input rounded-lg bg-card text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             >
               <option value="monthly">Monthly</option>
-              <option value="weekly">Weekly</option>
             </select>
           </div>
           <div>
@@ -186,7 +185,6 @@ const SettingsPage = () => {
               className="w-full h-10 px-4 border border-input rounded-lg bg-card text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             >
               <option value="monthly">Monthly</option>
-              <option value="weekly">Weekly</option>
             </select>
           </div>
           <div>

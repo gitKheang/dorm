@@ -1,7 +1,7 @@
 export type UserRole = "landlord" | "tenant" | "chef";
 export type MembershipStatus = "active" | "inactive";
 export type RoomStatus = "available" | "occupied" | "maintenance";
-export type BillingCycle = "monthly" | "weekly";
+export type BillingCycle = "monthly";
 export type InvoiceStatus = "draft" | "issued" | "partial" | "paid" | "overdue";
 export type MaintenanceStatus = "open" | "in_progress" | "resolved";
 export type MaintenancePriority = "low" | "medium" | "high";

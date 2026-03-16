@@ -27,10 +27,10 @@ npm install
 cp .env.example .env
 ```
 
-3. Create a Supabase project and run the migration in:
+3. Create a Supabase project and run this schema script:
 
 ```sh
-supabase/migrations/20260314133000_dormflow_mvp.sql
+supabase/migrations/20260316150000_dormflow_schema.sql
 ```
 
 4. Set these values in `.env`:

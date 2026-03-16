@@ -520,7 +520,7 @@ export async function listInvoicesForDorm(dormId: string) {
 export async function listInvoicesForMembership(membershipId: string) {
   const supabase = requireSupabase();
   const result = await supabase
-    .from("invoices")
+    .from("invoice_overview")
     .select("*")
     .eq("tenant_membership_id", membershipId)
     .order("billing_month", { ascending: false });

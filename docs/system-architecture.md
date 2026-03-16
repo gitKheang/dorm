@@ -55,7 +55,7 @@ The database should keep `membership` as the main identity bridge between people
 - `maintenance_tickets`
   - Tenant-raised requests within a dorm
 - `invoices`
-  - Monthly or weekly bills generated per tenant membership
+  - Monthly bills generated per tenant membership
 - `payments`
   - Manual payment records against invoices
 - `subscription_entitlements`
@@ -72,7 +72,7 @@ These rules should stay true across UI, API, and database policy.
 - Tenant and chef memberships originate from invitation acceptance, not direct membership editing in the client.
 - Invitation acceptance must require the signed-in email to match the invited email.
 - One tenant membership can have only one active room assignment at a time.
-- One room can have only one active assignment at a time in the current model.
+- Active room assignments for one room must never exceed that room's configured capacity.
 - One invoice exists per tenant membership per billing period.
 - Meal participation is tracked per tenant membership, not directly per user.
 - Cross-dorm reporting is not shown by default. The active dorm controls the workspace context.
@@ -148,7 +148,8 @@ Important product rule:
 2. Tenant accepts invitation and becomes an active dorm member.
 3. Landlord assigns the tenant membership to a room.
 4. The system closes the old assignment if the tenant is moving.
-5. The tenant dashboard reads its room state from the active membership.
+5. Room assignment end dates are treated as exclusive, so a reassignment can start on the same date the previous assignment ends without overlap.
+6. The tenant dashboard reads its room state from the active membership.
 
 ### 4. Meal workflow
 
