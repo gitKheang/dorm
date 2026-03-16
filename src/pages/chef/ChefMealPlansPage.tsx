@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
 import LoadingScreen from "@/components/LoadingScreen";
@@ -7,10 +7,10 @@ import { formatDateLabel, getWeekRange } from "@/lib/date";
 import { useDormMutations, useMealPlans } from "@/hooks/useDormflowData";
 import type { MealPlan } from "@/types/domain";
 
-const ChefMealPlansPage = () => {
-  const { activeMembership, user } = useAuth();
-  const dormId = activeMembership?.dormId;
-  const weekRange = getWeekRange();
+  const ChefMealPlansPage = () => {
+    const { activeMembership, user } = useAuth();
+    const dormId = activeMembership?.dormId;
+    const weekRange = useMemo(() => getWeekRange(), []);
   const plansQuery = useMealPlans(dormId, weekRange.startIso, weekRange.endIso);
   const mutations = useDormMutations(dormId);
   const [draftPlans, setDraftPlans] = useState<Array<Pick<MealPlan, "serviceDate" | "breakfast" | "lunch" | "dinner">>>([]);
@@ -60,7 +60,7 @@ const ChefMealPlansPage = () => {
               }
             }}
             disabled={mutations.saveMealPlans.isPending}
-            className="auth-button px-4 py-2"
+            className="auth-button w-auto min-w-[10rem] px-4 py-2"
           >
             {mutations.saveMealPlans.isPending ? "Saving..." : "Save"}
           </button>

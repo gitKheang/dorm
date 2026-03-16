@@ -10,10 +10,10 @@ import { formatDateLabel, getWeekRange } from "@/lib/date";
 import { useDailyMealCounts, useDormMutations, useMealPlans, useMemberDirectory } from "@/hooks/useDormflowData";
 import type { MealPlan } from "@/types/domain";
 
-const MealManagementPage = () => {
-  const { activeMembership, user } = useAuth();
-  const dormId = activeMembership?.dormId;
-  const weekRange = getWeekRange();
+  const MealManagementPage = () => {
+    const { activeMembership, user } = useAuth();
+    const dormId = activeMembership?.dormId;
+    const weekRange = useMemo(() => getWeekRange(), []);
 
   const membersQuery = useMemberDirectory(dormId);
   const plansQuery = useMealPlans(dormId, weekRange.startIso, weekRange.endIso);
@@ -118,7 +118,11 @@ const MealManagementPage = () => {
             <h4 className="font-semibold text-foreground">Weekly Meal Plan</h4>
             <p className="text-xs text-muted-foreground mt-1">Changes save directly to Supabase.</p>
           </div>
-          <button onClick={handleSave} disabled={mutations.saveMealPlans.isPending} className="auth-button px-4 py-2">
+          <button
+            onClick={handleSave}
+            disabled={mutations.saveMealPlans.isPending}
+            className="auth-button w-auto min-w-[10rem] px-4 py-2"
+          >
             {mutations.saveMealPlans.isPending ? "Saving..." : "Save Week"}
           </button>
         </div>
