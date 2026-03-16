@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
@@ -8,29 +8,30 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import LoadingScreen from "@/components/LoadingScreen";
 import SetupRequired from "@/components/SetupRequired";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
+import { lazyWithRetry } from "@/lib/lazyWithRetry";
 import type { UserRole } from "@/types/domain";
 
-const DashboardLayout = lazy(() => import("@/components/DashboardLayout"));
-const IndexPage = lazy(() => import("@/pages/Index"));
-const LoginPage = lazy(() => import("@/pages/LoginPage"));
-const RegisterPage = lazy(() => import("@/pages/RegisterPage"));
-const ForgotPasswordPage = lazy(() => import("@/pages/ForgotPasswordPage"));
-const DashboardPage = lazy(() => import("@/pages/DashboardPage"));
-const RoomsPage = lazy(() => import("@/pages/landlord/RoomsPage"));
-const TenantsPage = lazy(() => import("@/pages/landlord/TenantsPage"));
-const MealManagementPage = lazy(() => import("@/pages/landlord/MealManagementPage"));
-const PaymentsPage = lazy(() => import("@/pages/landlord/PaymentsPage"));
-const MaintenancePage = lazy(() => import("@/pages/landlord/MaintenancePage"));
-const ReportsPage = lazy(() => import("@/pages/landlord/ReportsPage"));
-const SettingsPage = lazy(() => import("@/pages/landlord/SettingsPage"));
-const MyRoomPage = lazy(() => import("@/pages/tenant/MyRoomPage"));
-const MyMealsPage = lazy(() => import("@/pages/tenant/MyMealsPage"));
-const MyInvoicesPage = lazy(() => import("@/pages/tenant/MyInvoicesPage"));
-const MyMaintenancePage = lazy(() => import("@/pages/tenant/MyMaintenancePage"));
-const ProfilePage = lazy(() => import("@/pages/shared/ProfilePage"));
-const ChefMealPlansPage = lazy(() => import("@/pages/chef/ChefMealPlansPage"));
-const ChefPrepPage = lazy(() => import("@/pages/chef/ChefPrepPage"));
-const NotFound = lazy(() => import("@/pages/NotFound"));
+const DashboardLayout = lazyWithRetry(() => import("@/components/DashboardLayout"), "DashboardLayout");
+const IndexPage = lazyWithRetry(() => import("@/pages/Index"), "IndexPage");
+const LoginPage = lazyWithRetry(() => import("@/pages/LoginPage"), "LoginPage");
+const RegisterPage = lazyWithRetry(() => import("@/pages/RegisterPage"), "RegisterPage");
+const ForgotPasswordPage = lazyWithRetry(() => import("@/pages/ForgotPasswordPage"), "ForgotPasswordPage");
+const DashboardPage = lazyWithRetry(() => import("@/pages/DashboardPage"), "DashboardPage");
+const RoomsPage = lazyWithRetry(() => import("@/pages/landlord/RoomsPage"), "RoomsPage");
+const TenantsPage = lazyWithRetry(() => import("@/pages/landlord/TenantsPage"), "TenantsPage");
+const MealManagementPage = lazyWithRetry(() => import("@/pages/landlord/MealManagementPage"), "MealManagementPage");
+const PaymentsPage = lazyWithRetry(() => import("@/pages/landlord/PaymentsPage"), "PaymentsPage");
+const MaintenancePage = lazyWithRetry(() => import("@/pages/landlord/MaintenancePage"), "MaintenancePage");
+const ReportsPage = lazyWithRetry(() => import("@/pages/landlord/ReportsPage"), "ReportsPage");
+const SettingsPage = lazyWithRetry(() => import("@/pages/landlord/SettingsPage"), "SettingsPage");
+const MyRoomPage = lazyWithRetry(() => import("@/pages/tenant/MyRoomPage"), "MyRoomPage");
+const MyMealsPage = lazyWithRetry(() => import("@/pages/tenant/MyMealsPage"), "MyMealsPage");
+const MyInvoicesPage = lazyWithRetry(() => import("@/pages/tenant/MyInvoicesPage"), "MyInvoicesPage");
+const MyMaintenancePage = lazyWithRetry(() => import("@/pages/tenant/MyMaintenancePage"), "MyMaintenancePage");
+const ProfilePage = lazyWithRetry(() => import("@/pages/shared/ProfilePage"), "ProfilePage");
+const ChefMealPlansPage = lazyWithRetry(() => import("@/pages/chef/ChefMealPlansPage"), "ChefMealPlansPage");
+const ChefPrepPage = lazyWithRetry(() => import("@/pages/chef/ChefPrepPage"), "ChefPrepPage");
+const NotFound = lazyWithRetry(() => import("@/pages/NotFound"), "NotFound");
 
 const queryClient = new QueryClient({
   defaultOptions: {
